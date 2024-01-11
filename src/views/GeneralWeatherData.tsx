@@ -1,41 +1,58 @@
 import React from "react"
+import '../styles/GeneralWeatherData.css'
 
 interface WeatherDataProps {
     weatherData: {
-    id: number,
-    name: string, 
-    timezone: number,
-    main: {temp: number},
-    weather: [{main: string, icon: string}],
-    sys: {country: string},
-    wind: {deg: number, gust: number, speed: number}
+        id: number,
+        name: string,
+        timezone: number,
+        main: { temp: number, temp_min: number, temp_max: number },
+        weather: [{ main: string, icon: string, description: string }],
+        sys: { country: string },
+        wind: { deg: number, gust: number, speed: number },
+        dt: number
     }[]
 }
 
 const GeneralWeatherData: React.FC<WeatherDataProps> = props => {
+return <div className="weather-data-container">
 
-    console.log(props.weatherData)
-
-    return <>
-        {props.weatherData.length < 1 ? <p>LOADING...</p> : props.weatherData.map(data => {
-            return <div key={data.id}>
-                <h1>{data.name}</h1>
-                <p>{data.sys.country}</p>
-                <p>{data.timezone}</p>
-                <p>{data.main.temp}</p>
-                {data.weather.map(item => {
-                    return <div>
-                        <p>{item.main}</p>
-                        <img src={`http://openweathermap.org/img/w/${item.icon}.png`} alt="weather-icon" />
+        {props.weatherData.length < 1 ? <p>Please type in City Name</p> : props.weatherData.map(data => {
+            const date = props.weatherData[0].dt
+            var fullDate = new Date(date * 1000)
+            var stringDate = fullDate.toString()
+            var shortHandDate = stringDate.slice(3, 15)
+            var day = stringDate.slice(0, 3)
+            return <div key={data.id} className="weather-data-section">
+                <div className="weather-data-top">
+                    <h1>{data.name}</h1>
+                    <div className="min-max">
+                        <p>{data.main.temp_min}</p>
+                        <p>{data.main.temp_max}</p>
                     </div>
-                    
-                })}
-
-                <p>{data.wind.speed}</p>
                 </div>
+                <div className="weather-data-middle">
+                    <div className="weather-data-middle-left">
+                        <p>{day}</p>
+                        <p>{shortHandDate}</p>
+                        <p>{data.wind.speed}</p>
+                    </div>
+                    <div className="weather-data-middle-center">
+                        {data.weather.map(item => {
+                            return <div>
+                                <div className="picture-frame">
+                                    <img src={`http://openweathermap.org/img/wn/${item.icon}@4x.png`} alt="weather-icon" />
+                                </div>
+                                <p className="main-temp">{item.main}</p>
+                            </div>
+                        })}
+                    </div>
+                    <h1>{data.main.temp}</h1>
+                </div>
+            </div>
         })}
-        </>
-    
+    </div>
+
 }
 
 export default GeneralWeatherData;

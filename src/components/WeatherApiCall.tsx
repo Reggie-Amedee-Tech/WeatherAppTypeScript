@@ -3,14 +3,14 @@ import React, {useRef} from "react";
 import { useEffect, useState } from "react";
 import GeneralWeatherData from "../views/GeneralWeatherData";
 import {WeatherData} from '../WeatherData'
+import '../styles/WeatherApiCall.css'
+import WeatherDataDuration from "../views/WeatherDataDuration";
 
 
 const WeatherApiCall: React.FC = () => {
-    const [weatherData, setWeatherData] = useState<WeatherData[]>([])
-    const [cityName, setCityName] = useState<string>("")
-
+    const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
+    const [cityName, setCityName] = useState<string>("");
     const textInputRef = useRef<HTMLInputElement>(null);
-    
     const weatherAPI = process.env.REACT_APP_API_KEY;
 
     useEffect(() => {
@@ -20,9 +20,8 @@ const WeatherApiCall: React.FC = () => {
             })
             .catch(err => {
                 console.log(err.message)
-                
             })
-    }, [cityName])
+    }, [cityName, weatherAPI])
 
     const onSubmitHandler = (event: React.FormEvent) => {
         event.preventDefault();
@@ -30,7 +29,8 @@ const WeatherApiCall: React.FC = () => {
         setCityName(enteredCity)
     }
 
-    return <div>
+    return <div className="component-container">
+        <div className="form-container">
         <form onSubmit={onSubmitHandler}>
             <label htmlFor="get-weather">Please input a city name.</label>
             <input type="text" id="get-weather" ref={textInputRef}/>
@@ -38,7 +38,9 @@ const WeatherApiCall: React.FC = () => {
                 onSubmitHandler(e)
             }}>Submit</button>
         </form>
+        </div>
         <GeneralWeatherData weatherData={weatherData}/>
+        <WeatherDataDuration cityName={cityName}/>
     </div>
 }
 
