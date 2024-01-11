@@ -15,7 +15,10 @@ interface WeatherDataProps {
 }
 
 const GeneralWeatherData: React.FC<WeatherDataProps> = props => {
-return <div className="weather-data-container">
+
+
+
+    return <div className="weather-data-container">
 
         {props.weatherData.length < 1 ? <p>Please type in City Name</p> : props.weatherData.map(data => {
             const date = props.weatherData[0].dt
@@ -27,27 +30,25 @@ return <div className="weather-data-container">
                 <div className="weather-data-top">
                     <h1>{data.name}</h1>
                     <div className="min-max">
-                        <p>{data.main.temp_min}</p>
-                        <p>{data.main.temp_max}</p>
+                        <p>{Math.floor(data.main.temp_min)}</p>
+                        <p>{Math.floor(data.main.temp_max)}</p>
                     </div>
                 </div>
                 <div className="weather-data-middle">
                     <div className="weather-data-middle-left">
                         <p>{day}</p>
                         <p>{shortHandDate}</p>
-                        <p>{data.wind.speed}</p>
+                        <p>{Math.floor(data.wind.speed)}</p>
                     </div>
                     <div className="weather-data-middle-center">
                         {data.weather.map(item => {
-                            return <div>
-                                <div className="picture-frame">
-                                    <img src={`http://openweathermap.org/img/wn/${item.icon}@4x.png`} alt="weather-icon" />
-                                </div>
+                            return <div className="weather-data-middle-center-middle">
+                                <img src={`http://openweathermap.org/img/wn/${item.icon}@4x.png`} alt="weather-icon" className="general-weather-icon"/>
                                 <p className="main-temp">{item.main}</p>
                             </div>
                         })}
                     </div>
-                    <h1>{data.main.temp}</h1>
+                    <h1>{Math.floor(data.main.temp)}</h1>
                 </div>
             </div>
         })}

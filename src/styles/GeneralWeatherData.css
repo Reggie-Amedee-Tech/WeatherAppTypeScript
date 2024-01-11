@@ -1,12 +1,12 @@
 .weather-data-container {
     border: 1px solid blue;
     width: 70%;
+    height: 500px;
     margin: 0 auto;
 }
 
 
 .weather-data-section {
-    border: 1px solid red;
     width: 100%;
     height: 100%;
 }
@@ -52,16 +52,20 @@
 
 .weather-data-middle-center {
     border: 1px solid hotpink;
+    width: 50%;
 }
 
-.picture-frame {
-    height: 300px;
-    width: 300px;
+.weather-data-middle-center-middle {
+    display: flex;
+    flex-direction: column;
+
 }
 
-img {
-    height: 100%;
-    width: 100%;
+.general-weather-icon {
+    border: 1px solid black;
+    height: 30vh;
+    width: 20vw;
+    margin: 0 auto;
 }
 
 .main-temp {
