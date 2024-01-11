@@ -1,15 +1,31 @@
 .forecast-weather-icon {
     width: 5vw;
     height: 10vh;
-    border: 1px solid red;
+}
+
+.weather-forecast-p {
+    font-size: 30px;
+    color: whitesmoke;
+    font-weight: 900;
 }
 
 .weather-forecast-container {
     display: flex;
     flex-direction: row;
-    border: 1px solid red;
     width: 70%;
+    height: 35vh;
     margin: 0 auto;
     justify-content: space-around;
     text-align: center;
+    background: #4ECDC4;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #556270, #4ECDC4);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #556270, #4ECDC4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 20px;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 100px 80px rgba(0, 0, 0, 0.12)
 }

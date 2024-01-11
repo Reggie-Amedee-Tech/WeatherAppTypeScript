@@ -20,7 +20,7 @@ const GeneralWeatherData: React.FC<WeatherDataProps> = props => {
 
     return <div className="weather-data-container">
 
-        {props.weatherData.length < 1 ? <p>Please type in City Name</p> : props.weatherData.map(data => {
+        {props.weatherData.length < 1 ? <div className="weather-data-section"><p>Please type in City Name</p></div> : props.weatherData.map(data => {
             const date = props.weatherData[0].dt
             var fullDate = new Date(date * 1000)
             var stringDate = fullDate.toString()
@@ -48,7 +48,7 @@ const GeneralWeatherData: React.FC<WeatherDataProps> = props => {
                             </div>
                         })}
                     </div>
-                    <h1>{Math.floor(data.main.temp)}</h1>
+                    <h1 className="main-degree">{Math.floor(data.main.temp)}</h1>
                 </div>
             </div>
         })}

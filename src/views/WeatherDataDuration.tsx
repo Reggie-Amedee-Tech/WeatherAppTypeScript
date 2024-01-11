@@ -36,17 +36,15 @@ const WeatherDataDuration: React.FC<WeatherApiProp> = props => {
                 var fullDate = new Date(date * 1000);
                 var stringDate = fullDate.toString();
                 var day = stringDate.slice(0, 3);
-
                 return <div>
                     <h1>{day}</h1>
                     {data.weather.map(item => {
                         return <img src={`http://openweathermap.org/img/w/${item.icon}.png`} alt="weather-icon" className="forecast-weather-icon"/>
                     })}
-                    <p>{Math.floor(data.main.temp)}</p>
+                    <p className="weather-forecast-p">{Math.floor(data.main.temp)}</p>
                 </div>
             }) : <p>Weather Forecast Data</p>}
         </div>
-    
 }
 
 export default WeatherDataDuration;

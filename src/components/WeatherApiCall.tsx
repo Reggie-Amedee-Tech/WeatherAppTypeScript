@@ -5,6 +5,7 @@ import GeneralWeatherData from "../views/GeneralWeatherData";
 import {WeatherData} from '../WeatherData'
 import '../styles/WeatherApiCall.css'
 import WeatherDataDuration from "../views/WeatherDataDuration";
+import Button from '@mui/material/Button';
 
 
 const WeatherApiCall: React.FC = () => {
@@ -34,13 +35,15 @@ const WeatherApiCall: React.FC = () => {
         <form onSubmit={onSubmitHandler}>
             <label htmlFor="get-weather">Please input a city name.</label>
             <input type="text" id="get-weather" ref={textInputRef}/>
-            <button type="submit" onClick={(e) => {
+            <Button variant="contained" type="submit" onClick={(e) => {
                 onSubmitHandler(e)
-            }}>Submit</button>
+            }}>Contained</Button>
         </form>
         </div>
+        <div className="component-div">
         <GeneralWeatherData weatherData={weatherData}/>
         <WeatherDataDuration cityName={cityName}/>
+        </div>
     </div>
 }
 
